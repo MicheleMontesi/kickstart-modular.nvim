@@ -45,4 +45,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Set < and > to indent/unindent selected lines more easily
+vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
+
 -- vim: ts=2 sts=2 sw=2 et
