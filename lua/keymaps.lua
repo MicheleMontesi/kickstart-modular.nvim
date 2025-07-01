@@ -49,4 +49,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
 
+-- Set workspace panels navigation
+vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to left window' })
+vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
+vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Move down' })
+vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Move up' })
+
 -- vim: ts=2 sts=2 sw=2 et
