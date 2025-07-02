@@ -194,6 +194,33 @@ return {
             },
           },
         },
+        yamlls = {
+          settings = {
+            yaml = {
+              keyOrdering = false,
+              format = {
+                enable = true,
+              },
+              validate = true,
+              schemas = {
+                -- Docker Compose schema from schemastore
+                ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = {
+                  'docker-compose.yml',
+                  'docker-compose.yaml',
+                  'compose.yml',
+                  'compose.yaml',
+                },
+              },
+            },
+          },
+        },
+        pyright = {
+          settings = {
+            python = {
+              pythonPath = vim.fn.exepath 'python',
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -209,6 +236,7 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'yaml-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
