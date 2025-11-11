@@ -55,4 +55,13 @@ vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to right window' })
 vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Move down' })
 vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Move up' })
 
+-- Toggle relative line numbers quickly
+vim.keymap.set('n', '<leader>rn', function()
+  vim.opt.relativenumber = true
+end, { desc = 'Enable [R]elative [N]umbers' })
+
+vim.keymap.set('n', '<leader>nn', function()
+  vim.opt.relativenumber = false
+end, { desc = 'Disable relative [N]umbers' })
+
 -- vim: ts=2 sts=2 sw=2 et
