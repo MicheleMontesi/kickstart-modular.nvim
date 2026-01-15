@@ -59,7 +59,6 @@ require('lazy').setup({
 
   -- NOTE: These plugins are added by me
   require 'kickstart.plugins.bufferline',
-  require 'kickstart.plugins.copilot',
   require 'kickstart.plugins.remotesshfs',
   require 'kickstart.plugins.lazy-git',
 
