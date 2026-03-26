@@ -31,8 +31,16 @@ return {
           lsp_format = lsp_format_opt,
         }
       end,
+      formatters = {
+        caddy = {
+          command = 'caddy',
+          args = { 'fmt', '-' },
+          stdin = true,
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
+        caddy = { 'caddy' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

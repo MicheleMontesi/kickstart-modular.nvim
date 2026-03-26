@@ -8,6 +8,7 @@ return {
         ensure_installed = {
           'bash',
           'c',
+          'caddy',
           'diff',
           'html',
           'lua',
