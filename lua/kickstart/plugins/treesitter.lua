@@ -4,7 +4,7 @@ return {
     build = ':TSUpdate',
     config = function()
       -- Nuova API: modulo "nvim-treesitter.config" (non "configs")
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter.config').setup {
         ensure_installed = {
           'bash',
           'c',
