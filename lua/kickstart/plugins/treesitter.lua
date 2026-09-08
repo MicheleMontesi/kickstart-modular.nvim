@@ -1,31 +1,43 @@
+local ensure_installed = {
+  'bash',
+  'c',
+  'caddy',
+  'diff',
+  'html',
+  'lua',
+  'luadoc',
+  'markdown',
+  'markdown_inline',
+  'query',
+  'vim',
+  'vimdoc',
+}
+
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
     config = function()
-      -- Nuova API: modulo "nvim-treesitter.config" (non "configs")
-      require('nvim-treesitter.config').setup {
-        ensure_installed = {
-          'bash',
-          'c',
-          'caddy',
-          'diff',
-          'html',
-          'lua',
-          'luadoc',
-          'markdown',
-          'markdown_inline',
-          'query',
-          'vim',
-          'vimdoc',
-        },
-        auto_install = true,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = { 'ruby' },
-        },
-        indent = { enable = true, disable = { 'ruby' } },
-      }
+      require('nvim-treesitter').setup()
+
+      -- Installa solo i parser mancanti (evita reinstall ad ogni avvio)
+      local installed = require('nvim-treesitter').get_installed 'parsers'
+      local missing = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, ensure_installed)
+      if #missing > 0 then
+        require('nvim-treesitter').install(missing)
+      end
+
+      -- Nuova API: highlight/indent si abilitano manualmente per FileType
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = ensure_installed,
+        callback = function()
+          pcall(vim.treesitter.start)
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
     end,
   },
 }
